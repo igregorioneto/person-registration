@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
+import { createQueryBuilder, getRepository } from 'typeorm';
 import Person from '../models/Person';
 
 class PersonController {
@@ -7,7 +7,18 @@ class PersonController {
     async getAllPersons(req: Request, res: Response) {
         try {
             const repository = getRepository(Person);
-            const persons = await repository.find();
+            const persons = await repository.query(
+                `select 
+                    p.id, p.name, p.phone, p.email , pro."name" 
+                from 
+                    public.person p 
+                inner join 
+                    public.profession pro 
+                on
+                    p.profession_id = pro.id`
+            );            
+            console.log(persons)
+
             return res.json(persons);
         } catch(error) {
             return res.json({
@@ -36,9 +47,9 @@ class PersonController {
     async createPerson(req: Request, res: Response) {
         try {
             const repository = getRepository(Person);
-            const { name, phone, email } = req.body;
+            const { name, phone, email, profession_id } = req.body;
 
-            const person = await repository.create({ name, phone, email });
+            const person = await repository.create({ name, phone, email, professionId: profession_id });
             await repository.save(person);
 
             return res.json(person);
@@ -52,7 +63,7 @@ class PersonController {
     async updatePerson(req: Request, res: Response) {
         try {
             const repository = getRepository(Person);
-            const { name, phone, email } = req.body;
+            const { name, phone, email, profession_id } = req.body;
             const { id } = req.params;
 
             const person = await repository.findOne({
@@ -62,6 +73,7 @@ class PersonController {
             person!.name = name;
             person!.phone = phone;
             person!.email = email;
+            person!.professionId = profession_id;
 
             await repository.save(person!);
 
@@ -84,7 +96,7 @@ class PersonController {
 
             await repository.delete({ id: person?.id });
 
-            return res.json(person);
+            return res.json({ message: 'Person successfully deleted!' });
         } catch(error) {
             return res.json({
                 error,

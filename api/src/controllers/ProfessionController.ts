@@ -64,7 +64,7 @@ class ProfessionController {
 
             await repository.save(profession!);
 
-            return res.json(profession);
+            return res.json({ message: 'Profession successfully deleted!' });
         } catch(error) {
             return res.json({
                 error,

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import Person from "./Person";
 
 @Entity('profession')
 class Profession {
@@ -8,6 +9,9 @@ class Profession {
 
     @Column()
     name: string;
+
+    @OneToMany(() => Person, person => person.professionConnection)
+    personConnection: Person[];
 
 }
 
