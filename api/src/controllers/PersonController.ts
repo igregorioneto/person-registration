@@ -8,7 +8,6 @@ class PersonController {
 
     async getAllPersons(req: Request, res: Response) {
         try {
-            console.log(req.file)
             const repository = getRepository(Person);
             const persons = await repository.query(
                 `select 

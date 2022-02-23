@@ -1,0 +1,25 @@
+<div *ngFor="let person of persons">
+    <div class="card-person">
+    <div class="card-image">
+        <img src="http://{{person.photo_url}}" alt="Card image cap">
+    </div>
+    <div class="card-info">
+        <p class="p-person">Name: {{person.name}}</p>
+        <hr>
+        <p class="p-profession">Profession: {{person.profession}}</p>   
+        
+        <button class="c-buttom btn-primary">READ MORE
+        <i class="bi bi-arrow-right-short"></i>
+        </button>
+
+    </div>
+
+
+    </div>
+</div>
+
+<div class="button-create">
+    <button id="button-plus" (click)="createProfession()">
+        <i class="bi bi-plus"></i>
+    </button>
+</div>

@@ -1,0 +1,23 @@
+<form [formGroup]="createPersonForm" (ngSubmit)="createPerson(createPersonForm.value)">
+    <div class="form-group">
+        <label for="exampleInputName1">Name</label>
+        <input formControlName="name" type="text" class="form-control" id="exampleInputName1" placeholder="Enter name">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPhone1">Phone</label>
+        <input formControlName="phone" type="text" class="form-control" id="exampleInputPhone1" placeholder="Enter name">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email</label>
+      <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    </div>
+    
+    <div class="form-group">
+        <input (change)="openCropperDialog($event)" type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+
+</form>
+
+<button type="submit" class="btn btn-primary" (click)="createPerson(createPersonForm.value)">Submit</button>
