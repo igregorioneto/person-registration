@@ -27,6 +27,10 @@ export class ListPersonComponent implements OnInit {
     this.router.navigateByUrl('/create');
   }
 
+  getByIdPerson(id: any) {
+    this.router.navigate([`/persons/${id}`]);
+  }
+
   
 
 }
