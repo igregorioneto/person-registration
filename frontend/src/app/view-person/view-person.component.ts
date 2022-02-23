@@ -13,6 +13,11 @@ export class ViewPersonComponent implements OnInit {
 
   person: any;
   id: any;
+  name: any;
+  email: any;
+  phone: any;
+  photoUrl: any;
+  profession: any;
   
   constructor(
     private readonly service: ViewPersonService,
@@ -25,7 +30,16 @@ export class ViewPersonComponent implements OnInit {
       this.service.getAllProfessions(this.id)
         .subscribe(person => {
             console.log(person);
+            this.name = person[0].name;
+            this.email = person[0].email;
+            this.phone = person[0].phone;
+            this.photoUrl = person[0].photo_url;
+            this.profession = person[0].profession;
         })
+  }
+
+  deletePerson() {
+
   }
 
   
