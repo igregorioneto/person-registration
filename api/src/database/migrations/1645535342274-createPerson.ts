@@ -29,6 +29,10 @@ export class createPerson1645535342274 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'photo_url',
+                        type: 'varchar',
+                    },
+                    {
                         name: 'profession_id',
                         type: 'uuid',
                         isPrimary: false,

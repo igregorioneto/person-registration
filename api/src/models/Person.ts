@@ -16,8 +16,8 @@ class Person {
     @Column()
     email: string;
 
-    //@Column({ name: 'photo_url' })
-    //photoUrl: string;
+    @Column({ name: 'photo_url' })
+    photoUrl: string;
 
     @Column({ name: 'profession_id' })
     professionId: string;

@@ -1,13 +1,15 @@
 import { Router } from "express";
 import PersonController from "../controllers/PersonController";
 import ProfessionController from "../controllers/ProfessionController";
-
+import { uploadAvatar } from "../config/upload";
+import multer from "multer";
 const router = Router();
+
 
 //persons
 router.get('/persons', PersonController.getAllPersons);
 router.get('/persons/:id', PersonController.getByIdPerson);
-router.post('/persons', PersonController.createPerson);
+router.post('/persons', multer(uploadAvatar.getConfig).single("file"), PersonController.createPerson);
 router.put('/persons/:id', PersonController.updatePerson);
 router.delete('/persons/:id', PersonController.deletePerson);
 

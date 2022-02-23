@@ -37,12 +37,12 @@ class ProfessionController {
     async createProfession(req: Request, res: Response) {
         try {
             const repository = getRepository(Profession);
-            const { name } = req.body;
+            const { profession } = req.body;
 
-            const profession = await repository.create({ name });
-            await repository.save(profession);
+            const prof = await repository.create({ profession });
+            await repository.save(prof);
 
-            return res.json(profession);
+            return res.json(prof);
         } catch(error) {
             return res.json({
                 error,
@@ -53,16 +53,16 @@ class ProfessionController {
     async updateProfession(req: Request, res: Response) {
         try {
             const repository = getRepository(Profession);
-            const { name } = req.body;
+            const { profession } = req.body;
             const { id } = req.params;
 
-            const profession = await repository.findOne({
+            const prof = await repository.findOne({
                 where: { id }
             });
 
-            profession!.name = name;
+            profession!.profession = profession;
 
-            await repository.save(profession!);
+            await repository.save(prof!);
 
             return res.json({ message: 'Profession successfully deleted!' });
         } catch(error) {

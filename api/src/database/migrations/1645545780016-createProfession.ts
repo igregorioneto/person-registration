@@ -17,7 +17,7 @@ export class createProfession1645545780016 implements MigrationInterface {
                         default: 'uuid_generate_v4()',
                     },
                     {
-                        name: 'name',
+                        name: 'profession',
                         type: 'varchar',
                     }
                 ]

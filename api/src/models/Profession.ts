@@ -8,7 +8,7 @@ class Profession {
     id: string;
 
     @Column()
-    name: string;
+    profession: string;
 
     @OneToMany(() => Person, person => person.professionConnection)
     personConnection: Person[];
